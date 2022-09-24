@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/views/home/home_screen.dart';
+import 'package:notes/views/screens/add_note.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Home_screen(),
+      home: AddNote(),
     );
   }
 }
