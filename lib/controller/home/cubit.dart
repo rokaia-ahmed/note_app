@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/states.dart';
-
-
 import '../../models/db_config.dart';
-import '../../models/notes_model.dart';
+
 
 class NotesCubit  extends Cubit<NotesStates>{
-  NotesCubit(this.sqldb) : super(NotesInitialState());
-
+  NotesCubit() : super(NotesInitialState());
+ static NotesCubit get(context)=> BlocProvider.of(context);
   List<Map> Alltasks=[];
   List<Map> Favourietasks=[];
   SqlDb sqldb =SqlDb() ;
   //late Database database;
+
 
 
   void getFromDb()
@@ -31,7 +31,7 @@ class NotesCubit  extends Cubit<NotesStates>{
     emit(NotesgetDbState());
 
 }
-void insertToDb(List<NoteModel> list)
+void insertToDb(String title,String content,int isFav)
 {
 
   sqldb.insertDatabase(title,content,isFav);
