@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/models/notes_model.dart';
 import 'package:notes/shared/app_colors.dart';
 import 'package:notes/views/widgets/listViewItem.dart';
 
@@ -11,6 +12,7 @@ class Home_screen extends StatefulWidget {
 }
 
 class _Home_screenState extends State<Home_screen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
