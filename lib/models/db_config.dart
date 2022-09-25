@@ -21,7 +21,7 @@ class  SqlDb{
 
   initialDb() async{
     String databasepath= await getDatabasesPath();
-    String path= join(databasepath,'Facture.db');
+    String path= join(databasepath,'noteApp.db');
     Database mydb= await openDatabase(path,onCreate: _onCreate,version: 1,);
     return mydb;
   }
@@ -50,12 +50,19 @@ class  SqlDb{
     return response;
 
   }
-  updateDatabase(List<Object> list) async {
+  updateContentDatabase(String content,int id) async {
     Database? myDb= await db;
-    int response=await myDb!.rawUpdate( "UPDATE 'Note' SET title = ?,content=? ,isFavorite=? WHERE id = ?",list);
+    int response=await myDb!.rawUpdate( "UPDATE 'Note' SET content=?  WHERE id = ?", [content,id]);
     return response;
 
   }
+  updateFavDatabase(int favorite,int id) async {
+    Database? myDb= await db;
+    int response=await myDb!.rawUpdate( "UPDATE 'Note' SET isFavorite=?  WHERE id = ?", [favorite,id]);
+    return response;
+
+  }
+
   deleteDatabase(int id) async {
     Database? myDb= await db;
     int response=await myDb!.rawDelete('DELETE  FROM "Note" WHERE "id"=$id');
