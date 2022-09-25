@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/models/db_config.dart';
 import 'package:notes/models/notes_model.dart';
 import 'package:notes/shared/app_colors.dart';
 import 'package:notes/views/widgets/listViewItem.dart';
@@ -12,6 +13,13 @@ class Home_screen extends StatefulWidget {
 }
 
 class _Home_screenState extends State<Home_screen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SqlDb database = new SqlDb();
+    database.initialDb();
+  }
 
   @override
   Widget build(BuildContext context) {

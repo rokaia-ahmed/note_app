@@ -22,7 +22,10 @@ class  SqlDb{
   initialDb() async{
     String databasepath= await getDatabasesPath();
     String path= join(databasepath,'noteApp.db');
-    Database mydb= await openDatabase(path,onCreate: _onCreate,version: 1,);
+    Database mydb= await openDatabase(path,onCreate: _onCreate,
+
+
+      version: 1,);
     return mydb;
   }
 
