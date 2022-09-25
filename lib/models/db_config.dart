@@ -33,32 +33,32 @@ class  SqlDb{
     "id" INTEGER PRIMARY KEY, 
     "title" TEXT,
     "content" TEXT,
-    "isFavorite" TEXT
+    "isFavorite" INTEGER
     )''');
 
   }
 
-  readDatabase(String sql) async {
+  readDatabase() async {
     Database? myDb= await db;
-    List<Map> response=await myDb!.rawQuery(sql);
+    List<Map> response=await myDb!.rawQuery('SELECT * FROM "Note" ');
     return response;
 
   }
-  insertDatabase(String sql, List<Object> list) async {
+  insertDatabase(List<Object> list) async {
     Database? myDb= await db;
-    int response= await myDb!.rawInsert(sql,list);
+    int response= await myDb!.rawInsert("INSERT INTO 'Note' (title,content,isFavorite) VALUES (?,?,?)",list);
     return response;
 
   }
-  updateDatabase(String sql ,List<Object> list) async {
+  updateDatabase(List<Object> list) async {
     Database? myDb= await db;
-    int response=await myDb!.rawUpdate(sql,list);
+    int response=await myDb!.rawUpdate( "UPDATE 'Note' SET title = ?,content=? ,isFavorite=? WHERE id = ?",list);
     return response;
 
   }
-  deleteDatabase(String sql) async {
+  deleteDatabase(int id) async {
     Database? myDb= await db;
-    int response=await myDb!.rawDelete(sql);
+    int response=await myDb!.rawDelete('DELETE  FROM "Note" WHERE "id"=$id');
     return response;
 
   }
