@@ -21,7 +21,7 @@ class  SqlDb{
 
   initialDb() async{
     String databasepath= await getDatabasesPath();
-    String path= join(databasepath,'Facture.db');
+    String path= join(databasepath,'noteApp.db');
     Database mydb= await openDatabase(path,onCreate: _onCreate,version: 1,);
     return mydb;
   }
