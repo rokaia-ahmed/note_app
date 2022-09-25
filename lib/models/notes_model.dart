@@ -2,7 +2,7 @@ class NoteModel{
 int? id;
 String? title;
 String? content;
-bool? isaFavorite;
+int? isaFavorite;
 
 NoteModel({this.id,this.title,this.content,this.isaFavorite});
 
@@ -11,7 +11,7 @@ NoteModel.fromJason(Map<String,dynamic> json)
   id = int.parse(json['id']);
   title=json['title'];
   content=json['content'];
-  isaFavorite= json['isaFavorite'];
+  isaFavorite= int.parse(json['isaFavorite']);
   }
 
 }
