@@ -29,7 +29,7 @@ class  SqlDb{
 
   _onCreate(Database db, int version) async{
     print('on create ');
-    db.execute('''CREATE TABLE User (
+    db.execute('''CREATE TABLE Note (
     "id" INTEGER PRIMARY KEY, 
     "title" TEXT,
     "content" TEXT,
