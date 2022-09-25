@@ -34,7 +34,7 @@ class NotesCubit  extends Cubit<NotesStates>{
 void insertToDb(List<NoteModel> list)
 {
 
-sqldb.insertDatabase(list);
+  sqldb.insertDatabase(title,content,isFav);
 emit(NotesInsertDbState());
 getFromDb();
 
