@@ -8,6 +8,7 @@ class listViewItem extends StatelessWidget {
       background: buildSwipeActionRight(),
       key: Key("ih"),
       child: Container(
+        width: double.infinity,
         // margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
         height: 150,
@@ -26,10 +27,22 @@ class listViewItem extends StatelessWidget {
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
-                IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                InkWell(
+                  onTap: (){},
+                  child: Icon(Icons.favorite,
+                    //size: 12,
+                  ),
+                ),
+                SizedBox(width: 10),
+                InkWell(
+                  onTap:(){} ,
+                  child: Icon(Icons.edit,
+                    // size: 12,
+                  ),
+                ),
               ],
             ),
+            SizedBox(height: 10),
             Expanded(
               child: Text(
                 " bhjbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
