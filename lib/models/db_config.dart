@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:notes/models/notes_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -43,15 +44,27 @@ class  SqlDb{
 
   }
 
-  readDatabase() async {
+   readDatabase() async {
     Database? myDb= await db;
-    List<Map> response=await myDb!.rawQuery('SELECT * FROM "Note" ');
-    return response;
-
+    try{
+      var response=await myDb!.rawQuery('SELECT * FROM "Note" ');
+      List<NoteModel> mynotes= (response).map((c) => NoteModel.fromJason(c)).toList();
+      print('$response response');
+      print('$mynotes mynotes');
+      //print('$information information');
+      return mynotes;
+    }catch(e){
+      print(e.toString());
+      return [];
+    }
   }
+
+
   insertDatabase(String title,String content,int isFav) async {
     Database? myDb= await db;
     int response= await myDb!.rawInsert("INSERT INTO 'Note' (title,content,isFavorite) VALUES (?,?,?)",[title,content,isFav]);
+    print('insrted --------------');
+    print('insrted $response');
     return response;
   }
   updateContentDatabase(String content,int id) async {

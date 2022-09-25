@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=>NotesCubit()..sqldb,
+      create: (context)=>NotesCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter ss',
