@@ -1,16 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:notes/controller/home/states.dart';
-import 'package:sqflite/sqflite.dart';
+
 
 import '../../models/db_config.dart';
+import '../../models/notes_model.dart';
 
 class NotesCubit  extends Cubit<NotesStates>{
   NotesCubit(this.sqldb) : super(NotesInitialState());
 
   List<Map> Alltasks=[];
   List<Map> Favourietasks=[];
-  final SqlDb sqldb ;
-  late Database database;
+  SqlDb sqldb =SqlDb() ;
+  //late Database database;
 
 
   void getFromDb()
@@ -19,7 +20,7 @@ class NotesCubit  extends Cubit<NotesStates>{
     Favourietasks=[];
 
     emit(NotesgetDbLoadingState());
-    database=sqldb.initialDb();
+
    Alltasks= sqldb.readDatabase();
    Alltasks.forEach((element) {
      if(element["isFavorite"]==1)
@@ -30,7 +31,7 @@ class NotesCubit  extends Cubit<NotesStates>{
     emit(NotesgetDbState());
 
 }
-void insertToDb(List<Object> list)
+void insertToDb(List<NoteModel> list)
 {
 
 sqldb.insertDatabase(list);
