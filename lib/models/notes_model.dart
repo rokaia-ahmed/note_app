@@ -8,10 +8,10 @@ NoteModel({this.id,this.title,this.content,this.isaFavorite});
 
 NoteModel.fromJason(Map<String,dynamic> json)
   {
-  id = int.parse(json['id']);
+  id = json['id'];
   title=json['title'];
   content=json['content'];
-  isaFavorite= int.parse(json['isaFavorite']);
+  isaFavorite= json['isFavorite'];
   }
 
 }

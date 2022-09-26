@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/views/screens/home_screen.dart';
+
+import 'controller/home/cubit.dart';
+import 'controller/home/states.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +15,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter ss',
-      theme: ThemeData(
-        backgroundColor: Colors.black,
-        primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (context)=>NotesCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter ss',
+        theme: ThemeData(
+          backgroundColor: Colors.black,
+          primarySwatch: Colors.blue,
+        ),
+        home: Home_screen(),
       ),
-      home: Home_screen(),
     );
   }
 }
