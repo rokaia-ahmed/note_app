@@ -3,18 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/cubit.dart';
 import 'package:notes/controller/home/states.dart';
 
+import 'favourite_screen.dart';
+
 class AddNote extends StatelessWidget {
-   AddNote({Key? key}) : super(key: key);
+  AddNote({Key? key}) : super(key: key);
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return BlocConsumer<NotesCubit,NotesStates>(
-      listener:(context,state){} ,
-      builder:(context,state){
-        NotesCubit cubit =BlocProvider.of(context);
+    return BlocConsumer<NotesCubit, NotesStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        NotesCubit cubit = BlocProvider.of(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -41,10 +44,16 @@ class AddNote extends StatelessWidget {
                           Icons.favorite,
                           color: Colors.red,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (v) {
+                            return Faviourte_screen();
+                          }));
+                        },
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           icon: Icon(
                             Icons.delete,
                             color: Colors.red,
@@ -68,9 +77,9 @@ class AddNote extends StatelessWidget {
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                          border:UnderlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
                       ),
                       controller: titleController,
                     ),
@@ -92,7 +101,7 @@ class AddNote extends StatelessWidget {
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        border:UnderlineInputBorder(
+                        border: UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
                       ),
@@ -105,21 +114,24 @@ class AddNote extends StatelessWidget {
                   ),
                   Center(
                     child: SizedBox(
-                      height: height*0.1,
-                      width: width*0.9,
+                      height: height * 0.1,
+                      width: width * 0.9,
                       child: ElevatedButton(
-                        onPressed: (){
-                         cubit.insertToDb(
-                          titleController.text,
-                             contentController.text,
-                             0,
-                         );
+                        onPressed: () {
+                          cubit.insertToDb(
+                            titleController.text,
+                            contentController.text,
+                            0,
+                          );
                         },
-                        child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
+                        child: Text(
+                          'Save',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
                         style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.black,
                           primary: Colors.white,
                           shape: RoundedRectangleBorder(
-
                             borderRadius: BorderRadius.circular(12),
                             // <-- Radius
                           ),
@@ -132,7 +144,7 @@ class AddNote extends StatelessWidget {
             ),
           ),
         );
-      } ,
+      },
     );
   }
 }
