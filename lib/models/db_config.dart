@@ -4,8 +4,10 @@ import 'package:path/path.dart';
 
 
 class  SqlDb{
+
   static Database? _db;
   Future<Database?> get db async{
+
     if(_db==null)
     {
       _db= await initialDb();
@@ -47,11 +49,10 @@ class  SqlDb{
     return response;
 
   }
-  insertDatabase(List<Object> list) async {
+  insertDatabase(String title,String content,int isFav) async {
     Database? myDb= await db;
-    int response= await myDb!.rawInsert("INSERT INTO 'Note' (title,content,isFavorite) VALUES (?,?,?)",list);
+    int response= await myDb!.rawInsert("INSERT INTO 'Note' (title,content,isFavorite) VALUES (?,?,?)",[title,content,isFav]);
     return response;
-
   }
   updateContentDatabase(String content,int id) async {
     Database? myDb= await db;
