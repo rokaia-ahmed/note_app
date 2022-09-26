@@ -30,10 +30,10 @@ class NotesCubit  extends Cubit<NotesStates>{
     emit(NotesgetDbState());
 
 }
-void insertToDb(List<Object> list)
+void insertToDb(String title,String content,int isFav)
 {
 
-sqldb.insertDatabase(list);
+sqldb.insertDatabase(title,content,isFav);
 emit(NotesInsertDbState());
 getFromDb();
 
