@@ -35,8 +35,18 @@ class NotesCubit  extends Cubit<NotesStates>{
   List<NoteModel>getAllTask(){
     sqldb.readDatabase().then((notes)
     {//emit= start the state
-      emit(NotesgetDbLoadingState(notes));
+      Favourietasks=[];
+
       this.Alltasks=notes;
+      notes.forEach((element) {
+        if(element.isaFavorite==1)
+          {
+           Favourietasks.add(element);
+          }
+        emit(NotesgetDbLoadingState(notes,Favourietasks));
+      });
+
+
 
     });
     return [];

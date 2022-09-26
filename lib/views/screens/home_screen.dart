@@ -9,6 +9,7 @@ import 'package:notes/views/widgets/listViewItem.dart';
 import 'package:notes/views/widgets/show_indicator.dart';
 import '../widgets/GridviewItem.dart';
 import 'add_note.dart';
+import 'favourite_screen.dart';
 
 class Home_screen extends StatefulWidget {
   @override
@@ -39,7 +40,12 @@ class _Home_screenState extends State<Home_screen> {
               Icons.favorite,
               color: Colors.red,
             ),
-            onPressed: () {},
+            onPressed: () {
+
+              Navigator.push(context, MaterialPageRoute(builder: (v) {
+                return Faviourte_screen();
+              }));
+            },
           ),
           IconButton(
               onPressed: () {
