@@ -33,7 +33,7 @@ class AddNote extends StatelessWidget {
                       Expanded(
                           flex: 4,
                           child: Text(
-                            "Edit Notes",
+                            "Add Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                       IconButton(

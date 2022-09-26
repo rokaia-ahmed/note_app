@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/models/notes_model.dart';
 
+import '../screens/edit_screen.dart';
+
 class listViewItem extends StatelessWidget {
   NoteModel? note;
   listViewItem({required this.note});
@@ -39,7 +41,12 @@ class listViewItem extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 InkWell(
-                  onTap:(){} ,
+                  onTap:(){
+                    Navigator.push(context,MaterialPageRoute(
+                        builder: (context)=>EditNote()
+                    ),
+                    );
+                  } ,
                   child: Icon(Icons.edit,
                     // size: 12,
                   ),
