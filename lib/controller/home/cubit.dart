@@ -74,9 +74,9 @@ void updateContent(String content,int id)
     emit(NotesUpdateDbState());
 
   }
-  void deleteData(int id)
+  void deleteData(int? id)
   {
-     sqldb.deleteDatabase(id);
+     sqldb.deleteDatabase(id!);
      getAllTask();
      emit(NotesDeleteDbState());
 

@@ -1,19 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/controller/home/states.dart';
 import 'package:notes/models/notes_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../controller/home/cubit.dart';
+import '../../models/db_config.dart';
 import '../screens/edit_screen.dart';
 
 class listViewItem extends StatelessWidget {
+
   NoteModel? note;
   listViewItem({required this.note});
   @override
   Widget build(BuildContext context) {
+
     return Dismissible(
       background: buildSwipeActionRight(),
-      key: Key("ih"),
+      key: Key('id'),
+      onDismissed: (direction){
+        //NotesCubit.get(context).deleteData(note?.id);
+        BlocProvider.of<NotesCubit>(context).deleteData(note?.id);
+      },
       child: Container(
         width: double.infinity,
         // margin: EdgeInsets.all(10),

@@ -18,12 +18,14 @@ class Faviourte_screen extends StatefulWidget {
 class _Faviourte_screenState extends State<Faviourte_screen> {
   List<NoteModel>? FavTasks;
   bool isListView = true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     BlocProvider.of<NotesCubit>(context).getAllTask();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +70,7 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
       ),
     );
   }
+
   Widget buildBody() {
     return BlocBuilder<NotesCubit, NotesStates>(builder: (context, state) {
       if (state is NotesgetDbLoadingState) {
@@ -87,33 +90,33 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
               ),
               isListView
                   ? Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: FavTasks!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return listViewItem(
-                        note: FavTasks![index],
-                      );
-                    },
-                    //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
-                  ))
+                      child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: FavTasks!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return listViewItem(
+                          note: FavTasks![index],
+                        );
+                      },
+                      //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
+                    ))
                   : Expanded(
-                  child: GridView.builder(
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 0.5,
-                      mainAxisSpacing: 0.5,
-                    ),
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemCount: FavTasks!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return listViewItem(note: FavTasks![index]);
-                    },
-                  ))
+                      child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: 0.5,
+                        mainAxisSpacing: 0.5,
+                      ),
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      itemCount: FavTasks!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return listViewItem(note: FavTasks![index]);
+                      },
+                    ))
             ],
           ),
         );

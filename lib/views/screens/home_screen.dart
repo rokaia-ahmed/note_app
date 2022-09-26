@@ -96,33 +96,33 @@ class _Home_screenState extends State<Home_screen> {
               ),
               isListView
                   ? Expanded(
-                      child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: allNotes!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return listViewItem(
-                          note: allNotes![index],
-                        );
-                      },
-                      //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
-                    ))
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: allNotes!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return listViewItem(
+                        note: allNotes![index],
+                      );
+                    },
+                    //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
+                  ))
                   : Expanded(
-                      child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1,
-                        crossAxisSpacing: 0.5,
-                        mainAxisSpacing: 0.5,
-                      ),
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                      itemCount: allNotes!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return listViewItem(note: allNotes![index]);
-                      },
-                    ))
+                  child: GridView.builder(
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 0.5,
+                      mainAxisSpacing: 0.5,
+                    ),
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: allNotes!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return listViewItem(note: allNotes![index]);
+                    },
+                  ))
             ],
           ),
         );
