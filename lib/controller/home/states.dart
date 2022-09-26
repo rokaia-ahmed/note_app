@@ -6,7 +6,8 @@ class NotesInitialState extends NotesStates {}
 class NotesCreateDbState extends NotesStates {}
 class NotesgetDbLoadingState extends NotesStates {
   final List<NoteModel> allNotes;
-  NotesgetDbLoadingState(this.allNotes);
+  final List<NoteModel> favtasks;
+  NotesgetDbLoadingState(this.allNotes,this.favtasks);
 
 }
 class NotesgetFavNotesState extends NotesStates {

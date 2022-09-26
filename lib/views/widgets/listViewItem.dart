@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/models/notes_model.dart';
 
+import '../../controller/home/cubit.dart';
 import '../screens/edit_screen.dart';
 
 class listViewItem extends StatelessWidget {
@@ -34,10 +36,18 @@ class listViewItem extends StatelessWidget {
                 ),
                 Spacer(),
                 InkWell(
-                  onTap: (){},
-                  child: Icon(Icons.favorite,
-                    //size: 12,
-                  ),
+                  onTap: (){
+
+                    if(note?.isaFavorite==0) {
+                      BlocProvider.of<NotesCubit>(context).updateFav(1, (note?.id)!);
+
+                    } else {
+                      BlocProvider.of<NotesCubit>(context).updateFav(0, (note?.id)!);
+                    }
+                  },
+                  child:   note?.isaFavorite==0?
+                  Icon(Icons.favorite_border):
+                  Icon(Icons.favorite,color: Colors.red,),
                 ),
                 SizedBox(width: 10),
                 InkWell(
