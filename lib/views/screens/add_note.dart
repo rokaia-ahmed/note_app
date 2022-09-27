@@ -33,14 +33,14 @@ class AddNote extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                     const Expanded(
+                      Expanded(
                           flex: 4,
                           child: Text(
                             "Add Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                       IconButton(
-                        icon:const Icon(
+                        icon: Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),
@@ -54,7 +54,7 @@ class AddNote extends StatelessWidget {
                           onPressed: () {
 
                           },
-                          icon:const Icon(
+                          icon: Icon(
                             Icons.delete,
                             color: Colors.red,
                           )),
@@ -63,7 +63,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.04,
                   ),
-                 const Text(
+                  Text(
                     " Title",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -76,7 +76,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration:const InputDecoration(
+                      decoration: InputDecoration(
                         border: UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -87,7 +87,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  const Text(
+                  Text(
                     " Content",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -100,7 +100,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration:const InputDecoration(
+                      decoration: InputDecoration(
                         border: UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -124,6 +124,10 @@ class AddNote extends StatelessWidget {
                             0,
                           );
                         },
+                        child: Text(
+                          'Save',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
                         style: ElevatedButton.styleFrom(
                           onPrimary: Colors.black,
                           primary: Colors.white,
@@ -131,10 +135,6 @@ class AddNote extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             // <-- Radius
                           ),
-                        ),
-                        child:const Text(
-                          'Save',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
                     ),

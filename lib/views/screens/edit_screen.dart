@@ -47,22 +47,31 @@ class _EditNoteState extends State<EditNote> {
                 children: [
                   Row(
                     children: [
-                     const Expanded(
+                      Expanded(
                           flex: 4,
                           child: Text(
                             "Edit Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                       IconButton(
-                        icon:const Icon(
+                        icon: Icon(
                           Icons.favorite,
-                          color: Colors.red,
+                          color: (widget.note.isaFavorite ==0)?  Colors.white:Colors.red,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          if(widget.note.isaFavorite==0) {
+
+
+                            BlocProvider.of<NotesCubit>(context).updateFav(1, (widget.note.id)!);
+
+                          } else {
+                            BlocProvider.of<NotesCubit>(context).updateFav(0, (widget.note.id)!);
+                          }
+                        },
                       ),
                       IconButton(
                           onPressed: () {},
-                          icon:const Icon(
+                          icon: Icon(
                             Icons.delete,
                             color: Colors.red,
                           )),
@@ -71,7 +80,7 @@ class _EditNoteState extends State<EditNote> {
                   SizedBox(
                     height: height * 0.04,
                   ),
-                  const Text(
+                  Text(
                     " Title",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -84,7 +93,7 @@ class _EditNoteState extends State<EditNote> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration:const InputDecoration(
+                      decoration: InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -96,7 +105,7 @@ class _EditNoteState extends State<EditNote> {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                 const Text(
+                  Text(
                     " Content",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -109,7 +118,7 @@ class _EditNoteState extends State<EditNote> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration:const InputDecoration(
+                      decoration: InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -124,7 +133,7 @@ class _EditNoteState extends State<EditNote> {
                   ),
                   Center(
                     child: SizedBox(
-                      height: height*0.1,
+                      height: height*0.07,
                       width: width*0.9,
                       child: ElevatedButton(
                         onPressed: (){
@@ -136,17 +145,15 @@ class _EditNoteState extends State<EditNote> {
                           );
                           Navigator.pop(context);
                         },
+                        child: Text('Save', style: TextStyle(color: Colors.white, fontSize: 20),),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           onPrimary: Colors.black,
                           shape: RoundedRectangleBorder(
 
                             borderRadius: BorderRadius.circular(12),
                             // <-- Radius
                           ),
-                        ),
-                        child:const Text('Save',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
                     ),
