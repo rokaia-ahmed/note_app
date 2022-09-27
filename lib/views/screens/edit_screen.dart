@@ -71,6 +71,7 @@ class EditNote extends StatelessWidget {
                         border:UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
+                          contentPadding: EdgeInsets.all(10)
                       ),
                       controller: titleController,
                     ),
@@ -95,6 +96,7 @@ class EditNote extends StatelessWidget {
                         border:UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
+                          contentPadding: EdgeInsets.all(10)
                       ),
                       maxLines: 5,
                       controller: contentController,

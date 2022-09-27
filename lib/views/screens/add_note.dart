@@ -70,8 +70,11 @@ class AddNote extends StatelessWidget {
                       decoration: InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
+                            
                           ),
+                        contentPadding: EdgeInsets.all(10)
                       ),
+                      
                       controller: titleController,
                     ),
                   ),
@@ -95,6 +98,7 @@ class AddNote extends StatelessWidget {
                         border:UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
+                          contentPadding: EdgeInsets.all(10)
                       ),
                       maxLines: 5,
                       controller: contentController,
@@ -114,6 +118,7 @@ class AddNote extends StatelessWidget {
                              contentController.text,
                              0,
                          );
+                         Navigator.pop(context);
                         },
                         child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
                         style: ElevatedButton.styleFrom(

@@ -14,6 +14,7 @@ class listViewItem extends StatelessWidget {
     return Dismissible(
       background: buildSwipeActionRight(),
       key: Key("ih"),
+
       child: Container(
         width: double.infinity,
         // margin: EdgeInsets.all(10),
@@ -46,10 +47,10 @@ class listViewItem extends StatelessWidget {
                     }
                   },
                   child:   note?.isaFavorite==0?
-                  Icon(Icons.favorite_border):
-                  Icon(Icons.favorite,color: Colors.red,),
+                  Icon(Icons.favorite_border,size: 20,):
+                  Icon(Icons.favorite,color: Colors.red,size: 20,),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 5),
                 InkWell(
                   onTap:(){
                     Navigator.push(context,MaterialPageRoute(
@@ -58,7 +59,7 @@ class listViewItem extends StatelessWidget {
                     );
                   } ,
                   child: Icon(Icons.edit,
-                    // size: 12,
+                      size: 20,
                   ),
                 ),
               ],
@@ -69,7 +70,7 @@ class listViewItem extends StatelessWidget {
                 note!.content!,
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 9,
+                maxLines: 5,
               ),
             ),
           ],
