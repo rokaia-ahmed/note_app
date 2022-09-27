@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/cubit.dart';
 import 'package:notes/controller/home/states.dart';
+import 'package:notes/models/notes_model.dart';
 
-class EditNote extends StatelessWidget {
-  EditNote({Key? key}) : super(key: key);
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController contentController = TextEditingController();
+
+class EditNote extends StatefulWidget {
+  NoteModel note;
+  EditNote({Key? key,required this.note}) : super(key: key);
+
+  @override
+  _EditNoteState createState() => _EditNoteState();
+}
+
+class _EditNoteState extends State<EditNote> {
+  TextEditingController? titleController,contentController;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    titleController= new TextEditingController(text: widget.note.title);
+    contentController=new TextEditingController(text: widget.note.content);
+  }
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -68,9 +85,10 @@ class EditNote extends StatelessWidget {
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        border:UnderlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
+                          border:UnderlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.all(10)
                       ),
                       controller: titleController,
                     ),
@@ -92,9 +110,10 @@ class EditNote extends StatelessWidget {
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        border:UnderlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
+                          border:UnderlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.all(10)
                       ),
                       maxLines: 5,
                       controller: contentController,
@@ -111,10 +130,11 @@ class EditNote extends StatelessWidget {
                         onPressed: (){
                           cubit.updateContent(
                             //titleController.text,
-                            contentController.text,
-                            0
+                              contentController!.text,
+                              widget.note.id!
 
                           );
+                          Navigator.pop(context);
                         },
                         child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
                         style: ElevatedButton.styleFrom(

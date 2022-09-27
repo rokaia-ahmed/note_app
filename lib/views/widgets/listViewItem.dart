@@ -11,7 +11,7 @@ import '../screens/edit_screen.dart';
 
 class listViewItem extends StatelessWidget {
 
-  NoteModel? note;
+  NoteModel note;
   listViewItem({required this.note});
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class listViewItem extends StatelessWidget {
       key: Key('id'),
       onDismissed: (direction){
         //NotesCubit.get(context).deleteData(note?.id);
-        BlocProvider.of<NotesCubit>(context).deleteData(note?.id);
+        BlocProvider.of<NotesCubit>(context).deleteData(note.id);
       },
       child: Container(
         width: double.infinity,
@@ -62,9 +62,10 @@ class listViewItem extends StatelessWidget {
                 InkWell(
                   onTap:(){
                     Navigator.push(context,MaterialPageRoute(
-                        builder: (context)=>EditNote()
+                        builder: (context)=>EditNote(note: note!)
                     ),
                     );
+
                   } ,
                   child: Icon(Icons.edit,
                     // size: 12,
