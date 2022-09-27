@@ -7,10 +7,20 @@ class ShowloadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return const Center(
-        child: CircularProgressIndicator(
-        color: Colors.purple,
-    ),
+    return  Center(
+        child: Container(
+          //color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              CircularProgressIndicator(
+              color: Colors.purple,
+            ),
+              Text('Loading ....',style: TextStyle(color: Colors.white,fontSize: 17),),
+            ],
+          ),
+        ),
     );
   }
 }

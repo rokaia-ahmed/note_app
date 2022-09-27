@@ -56,9 +56,18 @@ class _EditNoteState extends State<EditNote> {
                       IconButton(
                         icon: Icon(
                           Icons.favorite,
-                          color: Colors.red,
+                          color: (widget.note.isaFavorite ==0)?  Colors.white:Colors.red,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          if(widget.note.isaFavorite==0) {
+
+
+                            BlocProvider.of<NotesCubit>(context).updateFav(1, (widget.note.id)!);
+
+                          } else {
+                            BlocProvider.of<NotesCubit>(context).updateFav(0, (widget.note.id)!);
+                          }
+                        },
                       ),
                       IconButton(
                           onPressed: () {},
@@ -124,7 +133,7 @@ class _EditNoteState extends State<EditNote> {
                   ),
                   Center(
                     child: SizedBox(
-                      height: height*0.1,
+                      height: height*0.07,
                       width: width*0.9,
                       child: ElevatedButton(
                         onPressed: (){
@@ -136,9 +145,9 @@ class _EditNoteState extends State<EditNote> {
                           );
                           Navigator.pop(context);
                         },
-                        child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
+                        child: Text('Save', style: TextStyle(color: Colors.white, fontSize: 20),),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           onPrimary: Colors.black,
                           shape: RoundedRectangleBorder(
 

@@ -10,6 +10,7 @@ class NotesCubit  extends Cubit<NotesStates>{
 
   List<NoteModel> Alltasks=[];
   List<NoteModel> Favourietasks=[];
+  bool ? isEmptyList;
   SqlDb sqldb=SqlDb() ;
 
 
@@ -33,6 +34,7 @@ class NotesCubit  extends Cubit<NotesStates>{
 }*/
 
   List<NoteModel>getAllTask(){
+
     sqldb.readDatabase().then((notes)
     {//emit= start the state
       Favourietasks=[];
@@ -45,11 +47,17 @@ class NotesCubit  extends Cubit<NotesStates>{
           }
         emit(NotesgetDbLoadingState(notes,Favourietasks));
       });
-
-
-
     });
+
     return [];
+  }
+
+  void emptyData(){
+
+  if(getAllTask().isEmpty){
+    isEmptyList=true;
+    emit(NotesEmptyeDbState(isEmptyList));
+  }
   }
 void insertToDb(String title,String content,int isFav)
 {
@@ -61,26 +69,37 @@ getAllTask();
 }
 void updateContent(String content,int id)
 {
+
   sqldb.updateContentDatabase(content, id);
   getAllTask();
   emit(NotesUpdateDbState());
 
 }
 
-  void updateFav(int isFav,int id)async
-  {
-    sqldb.updateFavDatabase(isFav, id);
-    getAllTask();
-    emit(NotesUpdateDbState());
+void updateFav(int isFav,int id)async
+{
+  sqldb.updateFavDatabase(isFav, id);
+  getAllTask();
+  emit(NotesUpdateDbState());
 
-  }
-  void deleteData(int? id)
-  {
-     sqldb.deleteDatabase(id!);
-     getAllTask();
-     emit(NotesDeleteDbState());
+}
+void deleteData(int id)
+{
+   sqldb.deleteDatabase(id);
+   getAllTask();
+   emit(NotesDeleteDbState());
 
 
-  }
+}
+
+
+void showNotesInGridEvent() {
+emit.call(ShowNotesInViewState(true));
+}
+
+void showNotesInListEvent() {
+  emit.call(ShowNotesInViewState(false));
+}
+
 
 }
