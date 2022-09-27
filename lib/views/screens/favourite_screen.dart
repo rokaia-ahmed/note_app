@@ -18,7 +18,6 @@ class Faviourte_screen extends StatefulWidget {
 class _Faviourte_screenState extends State<Faviourte_screen> {
   List<NoteModel>? FavTasks;
   bool isListView = true;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -42,10 +41,13 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
           ),
           IconButton(
               onPressed: () {
-                if(isListView){context.read<NotesCubit>().showNotesInListEvent();}
-                else{context.read<NotesCubit>().showNotesInGridEvent();}
-
-
+                setState(() {
+                  isListView = !isListView;
+                });
+                /*Navigator.push(context,MaterialPageRoute(
+                        builder: (context)=>GridViewItem()
+                    ),
+                    );*/
               },
               icon: Icon(Icons.grid_view)),
         ],
@@ -55,7 +57,7 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
         backgroundColor: lightGreen,
         child: Icon(Icons.add_outlined),
         onPressed: () {
-
+          print('tuyrtytwe');
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -68,78 +70,56 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
   }
   Widget buildBody() {
     return BlocBuilder<NotesCubit, NotesStates>(builder: (context, state) {
-      if (state is NotesLoadingState || state is NotesInitialState) {
-        return const ShowloadingIndicator();
-      }
-      else
       if (state is NotesgetDbLoadingState) {
         FavTasks = (state).favtasks;
         print('notew $FavTasks');
-        return  buildListItems();
-      }
-      else if(state is ShowNotesInViewState)
-      {
-        isListView=state.inList;
-        return buildListItems();
-      }
-
-      else {
+        return Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Text(
+                "swipe left to delete",
+                style: TextStyle(color: Colors.red, fontSize: 10),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              isListView
+                  ? Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: FavTasks!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return listViewItem(
+                        note: FavTasks![index],
+                      );
+                    },
+                    //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
+                  ))
+                  : Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 0.5,
+                      mainAxisSpacing: 0.5,
+                    ),
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: FavTasks!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return listViewItem(note: FavTasks![index]);
+                    },
+                  ))
+            ],
+          ),
+        );
+      } else {
         return ShowloadingIndicator();
       }
     });
-  }
-  Widget buildListItems(){
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children:  [
-          const Text(
-            "swipe left to delete",
-            style: TextStyle(color: Colors.red, fontSize: 10),
-          ),
-          const SizedBox(height: 15,),
-          _buildListOrEmpty()
-        ],
-      ),
-    );
-  }
-  Widget _buildListOrEmpty() {
-
-    return isListView ?   _buildNotesListView():_buildNotesGridView();
-
-  }
-
-  _buildNotesGridView() {
-    return Expanded(
-        child: GridView.builder(
-          gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1,
-            crossAxisSpacing: 0.5,
-            mainAxisSpacing: 0.5,
-          ),
-          shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
-          padding: EdgeInsets.zero,
-          itemCount: FavTasks!.length,
-          itemBuilder: (BuildContext context, int index) {
-            return listViewItem(note: FavTasks![index]);
-          },
-        ));
-  }
-  _buildNotesListView() {
-    return Expanded(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: FavTasks!.length,
-          itemBuilder: (BuildContext context, int index) {
-            return listViewItem(
-              note: FavTasks![index],
-            );
-          },
-          //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
-        ));
   }
 }

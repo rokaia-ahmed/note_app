@@ -111,15 +111,17 @@ class EditNote extends StatelessWidget {
                       width: width*0.9,
                       child: ElevatedButton(
                         onPressed: (){
-                          cubit.insertToDb(
-                            titleController.text,
+                          cubit.updateContent(
+                            //titleController.text,
                             contentController.text,
-                            0,
+                            0
+
                           );
                         },
                         child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
+                          onPrimary: Colors.black,
                           shape: RoundedRectangleBorder(
 
                             borderRadius: BorderRadius.circular(12),
