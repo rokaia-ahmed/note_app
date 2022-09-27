@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'listViewItem.dart';
 
 class GridViewItem extends StatelessWidget {
   const GridViewItem({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class GridViewItem extends StatelessWidget {
           crossAxisSpacing: 10,
           children: List.generate(10,
                (index){
-               return SizedBox();
+               return const SizedBox();
                  //listViewItem();
                   }
           ),

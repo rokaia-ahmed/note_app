@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes/controller/home/states.dart';
 import 'package:notes/models/notes_model.dart';
-import 'package:sqflite/sqflite.dart';
-
 import '../../controller/home/cubit.dart';
-import '../../models/db_config.dart';
 import '../screens/edit_screen.dart';
 
 class listViewItem extends StatelessWidget {
@@ -39,7 +35,7 @@ class listViewItem extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  note!.title!,
+                  note.title!,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -47,22 +43,22 @@ class listViewItem extends StatelessWidget {
                 InkWell(
                   onTap: (){
 
-                    if(note?.isaFavorite==0) {
-                      BlocProvider.of<NotesCubit>(context).updateFav(1, (note?.id)!);
+                    if(note.isaFavorite==0) {
+                      BlocProvider.of<NotesCubit>(context).updateFav(1, (note.id)!);
 
                     } else {
-                      BlocProvider.of<NotesCubit>(context).updateFav(0, (note?.id)!);
+                      BlocProvider.of<NotesCubit>(context).updateFav(0, (note.id)!);
                     }
                   },
-                  child:   note?.isaFavorite==0?
-                  Icon(Icons.favorite_border):
+                  child:   note.isaFavorite==0?
+                  const Icon(Icons.favorite_border):
                   Icon(Icons.favorite,color: Colors.red,),
                 ),
-                SizedBox(width: 10),
+               const SizedBox(width: 10),
                 InkWell(
                   onTap:(){
                     Navigator.push(context,MaterialPageRoute(
-                        builder: (context)=>EditNote(note: note!)
+                        builder: (context)=>EditNote(note: note)
                     ),
                     );
 
@@ -76,7 +72,7 @@ class listViewItem extends StatelessWidget {
             SizedBox(height: 10),
             Expanded(
               child: Text(
-                note!.content!,
+                note.content!,
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 9,

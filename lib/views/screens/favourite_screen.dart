@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../controller/home/cubit.dart';
 import '../../controller/home/states.dart';
 import '../../models/notes_model.dart';
 import '../../shared/app_colors.dart';
 import '../widgets/listViewItem.dart';
-import '../widgets/show_indicator.dart';
 import 'add_note.dart';
 
 class Faviourte_screen extends StatefulWidget {
@@ -32,10 +30,10 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text("My Favourites"),
+        title:const Text("My Favourites"),
         actions: [
           IconButton(
-            icon: Icon(
+            icon:const Icon(
               Icons.favorite,
               color: Colors.red,
             ),
@@ -51,13 +49,13 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
                     ),
                     );*/
               },
-              icon: Icon(Icons.grid_view)),
+              icon:const Icon(Icons.grid_view)),
         ],
       ),
       body: buildBody(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightGreen,
-        child: Icon(Icons.add_outlined),
+        child:const Icon(Icons.add_outlined),
         onPressed: () {
           print('tuyrtytwe');
           Navigator.push(
@@ -110,7 +108,7 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
                         mainAxisSpacing: 0.5,
                       ),
                       shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
+                      physics:const ClampingScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemCount: FavTasks!.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -121,7 +119,24 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
           ),
         );
       } else {
-        return ShowloadingIndicator();
+        return Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children:const [
+              Icon(Icons.favorite,
+              size: 150,
+                color: Colors.red,
+              ),
+              Text('add favorite note',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+            ],
+          ),
+        );
       }
     });
   }

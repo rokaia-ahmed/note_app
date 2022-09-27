@@ -47,14 +47,14 @@ class _EditNoteState extends State<EditNote> {
                 children: [
                   Row(
                     children: [
-                      Expanded(
+                     const Expanded(
                           flex: 4,
                           child: Text(
                             "Edit Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                       IconButton(
-                        icon: Icon(
+                        icon:const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),
@@ -62,7 +62,7 @@ class _EditNoteState extends State<EditNote> {
                       ),
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon:const Icon(
                             Icons.delete,
                             color: Colors.red,
                           )),
@@ -71,7 +71,7 @@ class _EditNoteState extends State<EditNote> {
                   SizedBox(
                     height: height * 0.04,
                   ),
-                  Text(
+                  const Text(
                     " Title",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -84,7 +84,7 @@ class _EditNoteState extends State<EditNote> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -96,7 +96,7 @@ class _EditNoteState extends State<EditNote> {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  Text(
+                 const Text(
                     " Content",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -109,7 +109,7 @@ class _EditNoteState extends State<EditNote> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -136,7 +136,6 @@ class _EditNoteState extends State<EditNote> {
                           );
                           Navigator.pop(context);
                         },
-                        child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           onPrimary: Colors.black,
@@ -145,6 +144,9 @@ class _EditNoteState extends State<EditNote> {
                             borderRadius: BorderRadius.circular(12),
                             // <-- Radius
                           ),
+                        ),
+                        child:const Text('Save',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
                     ),

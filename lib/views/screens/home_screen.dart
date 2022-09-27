@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/cubit.dart';
 import 'package:notes/controller/home/states.dart';
-import 'package:notes/models/db_config.dart';
 import 'package:notes/models/notes_model.dart';
 import 'package:notes/shared/app_colors.dart';
 import 'package:notes/views/widgets/listViewItem.dart';
-import 'package:notes/views/widgets/show_indicator.dart';
-import '../widgets/GridviewItem.dart';
 import 'add_note.dart';
 import 'favourite_screen.dart';
 
@@ -33,10 +30,10 @@ class _Home_screenState extends State<Home_screen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text("My Notes"),
+        title:const Text("My Notes"),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
               color: Colors.red,
             ),
@@ -52,12 +49,8 @@ class _Home_screenState extends State<Home_screen> {
                 setState(() {
                   isListView = !isListView;
                 });
-                /*Navigator.push(context,MaterialPageRoute(
-                        builder: (context)=>GridViewItem()
-                    ),
-                    );*/
               },
-              icon: Icon(Icons.grid_view)),
+              icon:const Icon(Icons.grid_view)),
         ],
       ),
       body: buildBody(),
@@ -87,11 +80,11 @@ class _Home_screenState extends State<Home_screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
+             const Text(
                 "swipe left to delete",
                 style: TextStyle(color: Colors.red, fontSize: 10),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 15,
               ),
               isListView
@@ -116,7 +109,7 @@ class _Home_screenState extends State<Home_screen> {
                       mainAxisSpacing: 0.5,
                     ),
                     shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     padding: EdgeInsets.zero,
                     itemCount: allNotes!.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -127,7 +120,11 @@ class _Home_screenState extends State<Home_screen> {
           ),
         );
       } else {
-        return ShowloadingIndicator();
+        return Center(
+          child:Image.asset('assets/images/Frame.png',
+          height:180 ,
+            width: 180,
+        ) ,);
       }
     });
   }

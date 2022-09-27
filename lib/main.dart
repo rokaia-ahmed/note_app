@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/views/screens/home_screen.dart';
 
 import 'controller/home/cubit.dart';
-import 'controller/home/states.dart';
+
 
 void main() {
   runApp(const MyApp());
