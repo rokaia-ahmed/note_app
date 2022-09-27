@@ -21,7 +21,7 @@ class listViewItem extends StatelessWidget {
       key: Key('id'),
       onDismissed: (direction){
         //NotesCubit.get(context).deleteData(note?.id);
-        BlocProvider.of<NotesCubit>(context).deleteData(note.id);
+        BlocProvider.of<NotesCubit>(context).deleteData(note.id!);
       },
       child: Container(
         width: double.infinity,
@@ -47,14 +47,14 @@ class listViewItem extends StatelessWidget {
                 InkWell(
                   onTap: (){
 
-                    if(note?.isaFavorite==0) {
-                      BlocProvider.of<NotesCubit>(context).updateFav(1, (note?.id)!);
+                    if(note.isaFavorite==0) {
+                      BlocProvider.of<NotesCubit>(context).updateFav(1, (note.id)!);
 
                     } else {
-                      BlocProvider.of<NotesCubit>(context).updateFav(0, (note?.id)!);
+                      BlocProvider.of<NotesCubit>(context).updateFav(0, (note.id)!);
                     }
                   },
-                  child:   note?.isaFavorite==0?
+                  child:   note.isaFavorite==0?
                   Icon(Icons.favorite_border):
                   Icon(Icons.favorite,color: Colors.red,),
                 ),
@@ -76,10 +76,10 @@ class listViewItem extends StatelessWidget {
             SizedBox(height: 10),
             Expanded(
               child: Text(
-                note!.content!,
+                note.content!,
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 9,
+                maxLines: 5,
               ),
             ),
           ],
