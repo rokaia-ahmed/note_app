@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:notes/controller/home/states.dart';
 import 'package:notes/models/notes_model.dart';
-import 'package:sqflite/sqflite.dart';
-
 import '../../models/db_config.dart';
 
 class NotesCubit  extends Cubit<NotesStates>{
@@ -59,10 +57,10 @@ class NotesCubit  extends Cubit<NotesStates>{
     emit(NotesEmptyeDbState(isEmptyList));
   }
   }
-void insertToDb(String title,String content,int isFav)
+Future insertToDb(String title,String content,int isFav)async
 {
 
-sqldb.insertDatabase(title,content,isFav);
+await sqldb.insertDatabase(title,content,isFav);
 emit(NotesInsertDbState());
 getAllTask();
 

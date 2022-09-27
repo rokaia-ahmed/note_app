@@ -8,12 +8,14 @@ import 'package:notes/views/widgets/listViewItem.dart';
 import 'add_note.dart';
 import 'favourite_screen.dart';
 
-class Home_screen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
-  _Home_screenState createState() => _Home_screenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _Home_screenState extends State<Home_screen> {
+class _HomeScreenState extends State<HomeScreen> {
   List<NoteModel>? allNotes;
   bool isListView = true;
 
@@ -40,7 +42,7 @@ class _Home_screenState extends State<Home_screen> {
             onPressed: () {
 
               Navigator.push(context, MaterialPageRoute(builder: (v) {
-                return Faviourte_screen();
+                return const FavouriteScreen();
               }));
             },
           ),
@@ -56,9 +58,8 @@ class _Home_screenState extends State<Home_screen> {
       body: buildBody(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightGreen,
-        child: Icon(Icons.add_outlined),
+        child:const Icon(Icons.add_outlined),
         onPressed: () {
-          print('tuyrtytwe');
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -93,7 +94,7 @@ class _Home_screenState extends State<Home_screen> {
                     shrinkWrap: true,
                     itemCount: allNotes!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return listViewItem(
+                      return ListViewItem(
                         note: allNotes![index],
                       );
                     },
@@ -113,7 +114,7 @@ class _Home_screenState extends State<Home_screen> {
                     padding: EdgeInsets.zero,
                     itemCount: allNotes!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return listViewItem(note: allNotes![index]);
+                      return ListViewItem(note: allNotes![index]);
                     },
                   ))
             ],

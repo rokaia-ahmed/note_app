@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
           primarySwatch: Colors.blue,
         ),
-        home: Home_screen(),
+        home:const HomeScreen(),
       ),
     );
   }

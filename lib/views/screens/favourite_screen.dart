@@ -8,12 +8,14 @@ import '../../shared/app_colors.dart';
 import '../widgets/listViewItem.dart';
 import 'add_note.dart';
 
-class Faviourte_screen extends StatefulWidget {
+class FavouriteScreen extends StatefulWidget {
+  const FavouriteScreen({Key? key}) : super(key: key);
+
   @override
-  _Faviourte_screenState createState() => _Faviourte_screenState();
+  _FavouriteScreenState createState() => _FavouriteScreenState();
 }
 
-class _Faviourte_screenState extends State<Faviourte_screen> {
+class _FavouriteScreenState extends State<FavouriteScreen> {
   List<NoteModel>? FavTasks;
   bool isListView = true;
 
@@ -44,10 +46,6 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
                 setState(() {
                   isListView = !isListView;
                 });
-                /*Navigator.push(context,MaterialPageRoute(
-                        builder: (context)=>GridViewItem()
-                    ),
-                    );*/
               },
               icon:const Icon(Icons.grid_view)),
         ],
@@ -92,7 +90,7 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
                       shrinkWrap: true,
                       itemCount: FavTasks!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return listViewItem(
+                        return ListViewItem(
                           note: FavTasks![index],
                         );
                       },
@@ -112,7 +110,7 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
                       padding: EdgeInsets.zero,
                       itemCount: FavTasks!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return listViewItem(note: FavTasks![index]);
+                        return ListViewItem(note: FavTasks![index]);
                       },
                     ))
             ],

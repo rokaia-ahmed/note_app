@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/cubit.dart';
 import 'package:notes/controller/home/states.dart';
+import 'package:notes/views/screens/home_screen.dart';
 
 import 'favourite_screen.dart';
+
 
 class AddNote extends StatelessWidget {
   AddNote({Key? key}) : super(key: key);
@@ -33,20 +35,20 @@ class AddNote extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(
+                     const Expanded(
                           flex: 4,
                           child: Text(
                             "Add Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           )),
                       IconButton(
-                        icon: Icon(
+                        icon:const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         ),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (v) {
-                            return Faviourte_screen();
+                            return const FavouriteScreen();
                           }));
                         },
                       ),
@@ -54,7 +56,7 @@ class AddNote extends StatelessWidget {
                           onPressed: () {
 
                           },
-                          icon: Icon(
+                          icon:const Icon(
                             Icons.delete,
                             color: Colors.red,
                           )),
@@ -63,7 +65,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.04,
                   ),
-                  Text(
+                 const Text(
                     " Title",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -76,7 +78,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                         border: UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -87,7 +89,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  Text(
+                 const Text(
                     " Content",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -100,7 +102,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                         border: UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -122,12 +124,13 @@ class AddNote extends StatelessWidget {
                             titleController.text,
                             contentController.text,
                             0,
-                          );
+                          ).then((value){
+                            Navigator.push(context,MaterialPageRoute(
+                                builder:(context)=> const HomeScreen(),
+                            ),
+                            );
+                          });
                         },
-                        child: Text(
-                          'Save',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
-                        ),
                         style: ElevatedButton.styleFrom(
                           onPrimary: Colors.black,
                           primary: Colors.white,
@@ -135,6 +138,10 @@ class AddNote extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             // <-- Radius
                           ),
+                        ),
+                        child: const Text(
+                          'Save',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
                     ),
