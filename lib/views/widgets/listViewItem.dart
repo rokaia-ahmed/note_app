@@ -1,20 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/controller/home/states.dart';
 import 'package:notes/models/notes_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../controller/home/cubit.dart';
+import '../../models/db_config.dart';
 import '../screens/edit_screen.dart';
 
 class listViewItem extends StatelessWidget {
-  NoteModel? note;
+
+  NoteModel note;
   listViewItem({required this.note});
   @override
   Widget build(BuildContext context) {
+
     return Dismissible(
       background: buildSwipeActionRight(),
-      key: Key("ih"),
-
+      key: Key('id'),
+      onDismissed: (direction){
+        //NotesCubit.get(context).deleteData(note?.id);
+        BlocProvider.of<NotesCubit>(context).deleteData(note.id);
+      },
       child: Container(
         width: double.infinity,
         // margin: EdgeInsets.all(10),
@@ -47,19 +55,20 @@ class listViewItem extends StatelessWidget {
                     }
                   },
                   child:   note?.isaFavorite==0?
-                  Icon(Icons.favorite_border,size: 20,):
-                  Icon(Icons.favorite,color: Colors.red,size: 20,),
+                  Icon(Icons.favorite_border):
+                  Icon(Icons.favorite,color: Colors.red,),
                 ),
-                SizedBox(width: 5),
+                SizedBox(width: 10),
                 InkWell(
                   onTap:(){
                     Navigator.push(context,MaterialPageRoute(
-                        builder: (context)=>EditNote()
+                        builder: (context)=>EditNote(note: note!)
                     ),
                     );
+
                   } ,
                   child: Icon(Icons.edit,
-                      size: 20,
+                    // size: 12,
                   ),
                 ),
               ],
@@ -70,7 +79,7 @@ class listViewItem extends StatelessWidget {
                 note!.content!,
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 5,
+                maxLines: 9,
               ),
             ),
           ],
