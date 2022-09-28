@@ -78,7 +78,9 @@ class _Home_screenState extends State<Home_screen> {
   Widget buildBody() {
     return BlocBuilder<NotesCubit, NotesStates>(builder: (context, state) {
       if (state is NotesLoadingState || state is NotesInitialState) {
-        return const ShowloadingIndicator();
+        return const  Center(child: Text('There is No Note Existed ',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),));
+
+
       }
       else
       if (state is NotesgetDbLoadingState) {
@@ -93,8 +95,7 @@ class _Home_screenState extends State<Home_screen> {
         }
 
       else {
-        return const  Center(child: Text('There is No Note Existed ',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),));
-          //return const ShowloadingIndicator();
+        return const ShowloadingIndicator();
 
       }
     });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/controller/home/cubit.dart';
 import 'package:notes/controller/home/states.dart';
+import 'package:notes/views/screens/home_screen.dart';
 
 class AddNote extends StatelessWidget {
    AddNote({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class AddNote extends StatelessWidget {
                       ),
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
                             color: Colors.red,
                           )),
@@ -54,7 +55,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.04,
                   ),
-                  Text(
+                  const Text(
                     " Title",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -67,7 +68,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           border:UnderlineInputBorder(
                             borderSide: BorderSide.none,
                             
@@ -81,7 +82,7 @@ class AddNote extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  Text(
+                  const Text(
                     " Content",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -94,7 +95,7 @@ class AddNote extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border:UnderlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -109,7 +110,7 @@ class AddNote extends StatelessWidget {
                   ),
                   Center(
                     child: SizedBox(
-                      height: height*0.1,
+                      height: height*0.07,
                       width: width*0.9,
                       child: ElevatedButton(
                         onPressed: (){
@@ -118,11 +119,15 @@ class AddNote extends StatelessWidget {
                              contentController.text,
                              0,
                          );
-                         Navigator.pop(context);
+                         Navigator.of(context).push( MaterialPageRoute<AddNote>(
+                           builder: (BuildContext context) {
+                             return  Home_screen();
+                           },
+                         ));
                         },
-                        child: Text('Save', style: TextStyle(color: Colors.black, fontSize: 20),),
+                        child: Text('Save', style: TextStyle(color: Colors.white, fontSize: 20),),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           shape: RoundedRectangleBorder(
 
                             borderRadius: BorderRadius.circular(12),
