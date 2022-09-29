@@ -84,7 +84,8 @@ class _Home_screenState extends State<Home_screen> {
       }
       else
       if (state is NotesgetDbLoadingState) {
-        allNotes = (state).allNotes;
+        allNotes = (state).allNotes
+        ;
         print('notew $allNotes');
         return buildListItems();
       }

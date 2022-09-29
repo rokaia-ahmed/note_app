@@ -51,7 +51,6 @@ class _Faviourte_screenState extends State<Faviourte_screen> {
         backgroundColor: Colors.white,
         child: Icon(Icons.add_outlined,color:Colors.blue),
         onPressed: () {
-          print('tuyrtytwe');
           Navigator.push(
             context,
             MaterialPageRoute(
