@@ -48,11 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
               onPressed: () {
-                setState(() {
-                  isListView = !isListView;
-                });
+                if(isListView){context.read<NotesCubit>().showNotesInListEvent();}
+                else{context.read<NotesCubit>().showNotesInGridEvent();}
               },
-              icon:const Icon(Icons.grid_view)),
+              icon:const Icon(Icons.grid_view)
+          ),
         ],
       ),
       body: buildBody(),
@@ -76,51 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
       if (state is NotesgetDbLoadingState) {
         allNotes = (state).allNotes;
         print('notew $allNotes');
-        return Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-             const Text(
-                "swipe left to delete",
-                style: TextStyle(color: Colors.red, fontSize: 10),
-              ),
-             const SizedBox(
-                height: 15,
-              ),
-              isListView
-                  ? Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: allNotes!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListViewItem(
-                        note: allNotes![index],
-                      );
-                    },
-                    //separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,); }, itemCount: 5),
-                  ))
-                  : Expanded(
-                  child: GridView.builder(
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 0.5,
-                      mainAxisSpacing: 0.5,
-                    ),
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemCount: allNotes!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListViewItem(note: allNotes![index]);
-                    },
-                  ))
-            ],
-          ),
-        );
-      } else {
+        return buildListItems();
+      }
+      else if(state is ShowNotesInViewState)
+      {
+        isListView=state.inList;
+        return buildListItems();
+      }
+      else {
         return Center(
           child:Image.asset('assets/images/Frame.png',
           height:180 ,
@@ -129,4 +92,57 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
   }
+  Widget buildListItems(){
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children:  [
+          const Text(
+            "swipe left to delete",
+            style: TextStyle(color: Colors.red, fontSize: 10),
+          ),
+          const SizedBox(height: 15,),
+          _buildListOrEmpty()
+        ],
+      ),
+    );
+  }
+  Widget _buildListOrEmpty( ) {
+
+    return isListView ?   _buildNotesListView():_buildNotesGridView();
+
+  }
+  _buildNotesGridView() {
+    return Expanded(
+        child: GridView.builder(
+          gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1,
+            crossAxisSpacing: 0.5,
+            mainAxisSpacing: 0.5,
+          ),
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+          padding: EdgeInsets.zero,
+          itemCount: allNotes!.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListViewItem(note: allNotes![index]);
+          },
+        ));
+  }
+  _buildNotesListView() {
+    return Expanded(
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: allNotes!.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListViewItem(
+              note: allNotes![index],
+            );
+          },
+        ));
+  }
+
 }

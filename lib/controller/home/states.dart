@@ -29,3 +29,4 @@ class NotesInsertDbState extends NotesStates {
 
 }
 class NotesDeleteDbState extends NotesStates {}
+
