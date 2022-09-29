@@ -39,8 +39,8 @@ class listViewItem extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  note!.title!,
-                  style: TextStyle(
+                  note.title!,
+                  style:const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
