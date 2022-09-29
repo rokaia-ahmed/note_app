@@ -46,34 +46,12 @@ class _EditNoteState extends State<EditNote> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [
-                     const Expanded(
+                    children:const [
+                      Expanded(
                           flex: 4,
                           child: Text(
                             "Edit Notes",
                             style: TextStyle(color: Colors.white, fontSize: 25),
-                          )),
-                      IconButton(
-                        icon: Icon(
-                          Icons.favorite,
-                          color: (widget.note.isaFavorite ==0)?  Colors.white:Colors.red,
-                        ),
-                        onPressed: () {
-                          if(widget.note.isaFavorite==0) {
-
-
-                            BlocProvider.of<NotesCubit>(context).updateFav(1, (widget.note.id)!);
-
-                          } else {
-                            BlocProvider.of<NotesCubit>(context).updateFav(0, (widget.note.id)!);
-                          }
-                        },
-                      ),
-                      IconButton(
-                          onPressed: () {},
-                          icon:const Icon(
-                            Icons.delete,
-                            color: Colors.red,
                           )),
                     ],
                   ),
